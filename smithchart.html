@@ -1,0 +1,56 @@
+<html>
+<head>
+    <title>Smith Chart</title>
+    
+    <script type="text/javascript" src="jquery-1.6.min.js"></script>
+    <script type="text/javascript" src="smithchart.js"></script>
+    
+    <script type="text/javascript">
+        var gCanvas = null;
+        var gSmithChart = new SmithChart(800);
+        
+        $(document).ready(function ()
+        {
+            // Initialize all variables
+            gCanvas = $("#chart").get(0);
+            
+            if(gCanvas.getContext)
+            {
+                var cx = gCanvas.getContext("2d");
+                
+                cx.strokeStyle = "rgb(0,0,0)";
+                cx.beginPath();
+                cx.arc(400, 400, 400, 0, 2*Math.PI, false);
+                cx.stroke();
+                cx.beginPath();
+                cx.arc(400, 400, 380, 0, 2*Math.PI, false);
+                cx.stroke();
+                cx.beginPath();
+                cx.arc(400, 400, 360, 0, 2*Math.PI, false);
+                cx.stroke();
+                
+                cx.strokeStyle = "rgb(128,128,128)";
+                cx.beginPath();
+                cx.arc(400, 400, 390, 0, 2*Math.PI, false);
+                cx.stroke();
+                cx.beginPath();
+                cx.arc(400, 400, 370, 0, 2*Math.PI, false);
+                cx.stroke();
+                
+                cx.save();
+                cx.translate(400, 400);
+                cx.rotate(Math.PI / 4);
+                cx.translate(0, -390);
+                cx.strokeStyle = "rgb(0,0,0)";
+                cx.fillText("Hello World asdfasdfasdf", -cx.measureText("Hello World asdfasdfasdf").width / 2, 0);
+                cx.restore();
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <center><canvas id="chart" width="800" height="800"></canvas></center>
+</body>
+
+</html>
